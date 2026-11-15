@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d2552">
+<title>11월 16일 (월) 아침 브리핑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night:#1d2552; --night-2:#2d3a78; --dawn:#ffb37a; --sun:#ffd23f;
+    --sky:#eef2fa; --paper:#fff; --ink:#1b2033; --sub:#5e6680; --faint:#8b92a8;
+    --line:#e3e7f1; --soft:#f5f7fc; --up:#e0413a; --down:#2c63d9; --kakao:#fee500;
+    --serif:"Nanum Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --sans:"Nanum Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--sky); color:var(--ink); font-family:var(--sans);
+         font-size:17px; line-height:1.6; letter-spacing:-0.01em; word-break:keep-all; }
+  a { color:var(--night-2); text-underline-offset:3px; }
+  :focus-visible { outline:3px solid var(--sun); outline-offset:2px; border-radius:6px; }
+
+  /* 새벽 하늘 띠 */
+  .sky { position:relative; overflow:hidden; color:#fff;
+         background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 58%, #8f6f9a 82%, var(--dawn) 100%);
+         padding:calc(18px + env(safe-area-inset-top)) 22px 64px; }
+  .sky.short { padding-bottom:52px; background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 75%, #6c6496 100%); }
+  .sky .inner { position:relative; z-index:1; max-width:620px; margin:0 auto; }
+  .sun { position:absolute; z-index:0; width:150px; height:150px; border-radius:50%; right:-20px; bottom:-48px;
+         background:radial-gradient(circle, #fff6c8 0%, var(--sun) 42%, rgba(255,210,63,0) 70%); }
+  .sky.short .sun { opacity:.45; width:110px; height:110px; bottom:-60px; }
+  @media (prefers-reduced-motion:no-preference) {
+    .sky.rise .sun { animation:rise 1.6s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes rise { from { transform:translateY(70px); opacity:0; } to { transform:none; opacity:1; } }
+  }
+  .nav { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:26px; font-size:15px; }
+  .nav a, .nav button { color:#dfe4ff; text-decoration:none; background:none; border:0; font:inherit; padding:6px 0; cursor:pointer; }
+  .nav .brand { font-family:var(--serif); font-weight:700; color:#fff; font-size:17px; }
+  .nav .links { display:flex; gap:16px; align-items:center; }
+  .kicker { color:#c9d0f5; font-size:15px; margin:0 0 4px; }
+  .sky h1 { font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.3; margin:0; letter-spacing:-0.02em; }
+  .sky p.lead { color:#dfe4ff; margin:10px 0 0; font-size:16px; }
+
+  /* 신문 한 장 */
+  .paper { position:relative; max-width:620px; margin:-34px auto 0; background:var(--paper);
+           border-radius:22px 22px 0 0; padding:26px 22px 40px; min-height:62vh;
+           box-shadow:0 -1px 0 rgba(29,37,82,.04); }
+  @media (min-width:660px) { .paper { border-radius:22px; margin-bottom:40px; padding:32px 34px 40px; } }
+  .section { padding:26px 0; border-top:1px solid var(--line); }
+  .section:first-child { padding-top:0; border-top:0; }
+  .section h2 { font-family:var(--serif); font-size:21px; font-weight:700; margin:0 0 12px; letter-spacing:-0.02em; }
+  .hint { color:var(--sub); font-size:15px; }
+  .small { font-size:14px; color:var(--faint); }
+
+  .flash { max-width:620px; margin:0 auto 18px; background:rgba(255,255,255,.14); color:#fff;
+           border-radius:12px; padding:11px 14px; font-size:15px; }
+  .paper .flash { background:var(--soft); color:var(--ink); }
+
+  /* 버튼 */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; border:0; border-radius:12px;
+         padding:13px 18px; font:600 16px/1.2 var(--sans); white-space:nowrap; background:var(--night); color:#fff; text-decoration:none; cursor:pointer; }
+  .btn:active { transform:translateY(1px); }
+  .btn.block { width:100%; }
+  .btn.quiet { background:var(--soft); color:var(--night); }
+  .btn.small { padding:9px 13px; font-size:14px; border-radius:10px; }
+  .btn.kakao { background:var(--kakao); color:#191600; width:100%; font-size:17px; padding:16px; }
+  .btn.kakao::before { content:""; width:20px; height:18px; background:#191600;
+    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'><path d='M12 0C5.4 0 0 4.2 0 9.4c0 3.4 2.2 6.3 5.6 8L4.4 21.8c-.1.4.3.7.6.5l5.1-3.4c.6.1 1.3.1 1.9.1 6.6 0 12-4.2 12-9.4S18.6 0 12 0z'/></svg>") center/contain no-repeat;
+            mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'><path d='M12 0C5.4 0 0 4.2 0 9.4c0 3.4 2.2 6.3 5.6 8L4.4 21.8c-.1.4.3.7.6.5l5.1-3.4c.6.1 1.3.1 1.9.1 6.6 0 12-4.2 12-9.4S18.6 0 12 0z'/></svg>") center/contain no-repeat; }
+  .linkbtn { background:none; border:0; padding:0; font:inherit; font-size:14px; color:var(--faint); cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+
+  /* 입력 */
+  .field { margin-bottom:20px; }
+  .field > label, .row.field > div > label, .label { display:block; font-weight:700; margin-bottom:8px; font-size:16px; }
+  .field .hint { margin-top:6px; font-size:14px; }
+  input[type=text], input[type=time], select { width:100%; font:16px var(--sans); padding:13px 14px; color:var(--ink);
+    border:1.5px solid var(--line); border-radius:12px; background:var(--soft); appearance:none; }
+  select { background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%235e6680' stroke-width='2' fill='none'/></svg>");
+           background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+  input:focus, select:focus { border-color:var(--night-2); background:#fff; outline:none; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; } .row > * { flex:1; min-width:140px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips label { position:relative; border:1.5px solid var(--line); border-radius:999px; padding:8px 15px; font-size:15px;
+                 cursor:pointer; user-select:none; background:#fff; }
+  .chips input { position:absolute; opacity:0; pointer-events:none; }
+  .chips label:has(input:checked) { background:var(--night); border-color:var(--night); color:#fff; }
+  .chips label:has(input:focus-visible) { outline:3px solid var(--sun); outline-offset:2px; }
+  .toggle { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px;
+            background:var(--soft); border-radius:12px; font-weight:600; cursor:pointer; }
+  .toggle input { width:22px; height:22px; accent-color:var(--night); }
+
+  .up { color:var(--up); } .down { color:var(--down); }
+  footer.foot { max-width:620px; margin:0 auto; padding:20px 22px 36px; text-align:center; color:var(--faint); font-size:13px; }
+</style>
+
+<style>
+  .date { font-family:var(--serif); font-size:40px; line-height:1.15; font-weight:700; margin:0; letter-spacing:-0.03em; }
+  .date small { font-size:22px; font-weight:400; color:#c9d0f5; margin-left:4px; }
+  .greet { margin:10px 0 0; color:#dfe4ff; font-size:17px; }
+  .wx { margin-top:22px; padding-top:16px; border-top:1px solid rgba(255,255,255,.18); }
+  .wx-head { display:flex; align-items:baseline; gap:14px; margin-bottom:14px; }
+  .wx-head .temp { font-family:var(--serif); font-size:28px; font-weight:700; }
+  .wx .desc { font-size:16px; color:#fff; } .wx .rain { font-size:14px; color:#ffe7c2; }
+  .wx-chart { display:flex; flex-direction:column; gap:7px; }
+  .wx-row { display:flex; align-items:center; gap:10px; font-size:13px; color:#dfe4ff; }
+  .wx-row .wx-h { flex:0 0 32px; }
+  .wx-bar-track { flex:1; height:9px; border-radius:5px; background:rgba(255,255,255,.16); overflow:hidden; }
+  .wx-bar { height:100%; border-radius:5px; background:linear-gradient(90deg, var(--night-2), var(--sun)); }
+  .wx-row.now .wx-h, .wx-row.now .wx-t { color:#fff; font-weight:700; }
+  .wx-row .wx-t { flex:0 0 36px; text-align:right; font-variant-numeric:tabular-nums; }
+
+  .preview { background:#fffbe0; border-radius:14px; padding:14px 16px; font-size:15px; white-space:pre-wrap; line-height:1.55; margin:0; }
+  .must { list-style:none; counter-reset:m; padding:0; margin:0; }
+  .must li { counter-increment:m; display:flex; gap:14px; padding:10px 0; font-size:18px; line-height:1.5; font-weight:600; }
+  .must li::before { content:counter(m); flex:0 0 30px; height:30px; border-radius:50%; background:var(--sun); color:var(--night);
+                     font:700 16px/30px var(--serif); text-align:center; margin-top:-1px; }
+
+  .mkt { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  .mkt td { padding:10px 0; border-bottom:1px solid var(--line); font-size:16px; }
+  .mkt tr:last-child td { border-bottom:0; }
+  .mkt .p { text-align:right; font-weight:600; }
+  .mkt .c { text-align:right; width:92px; }
+  .chg { display:inline-block; min-width:76px; text-align:right; font-weight:700; font-size:15px; }
+  .comment { background:var(--soft); border-radius:12px; padding:12px 14px; font-size:16px; margin:0 0 8px; }
+
+  .news { list-style:none; padding:0; margin:0; }
+  .news li { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); }
+  .news li:last-child { border-bottom:0; padding-bottom:0; }
+  .news .thumb { flex:0 0 60px; width:60px; height:60px; border-radius:10px; object-fit:cover; background:var(--soft); }
+  .news .body { flex:1; min-width:0; }
+  .news a { color:var(--ink); text-decoration:none; font-size:16px; line-height:1.5; display:block; }
+  .news a:hover { color:var(--night-2); text-decoration:underline; }
+  .news .src { color:var(--faint); font-size:13px; margin-top:3px; }
+  .topic-sum { font-family:var(--serif); font-size:17px; line-height:1.7; color:var(--sub); margin:0 0 4px; }
+  .topic-link { display:inline-block; font-size:14px; color:var(--night-2); text-decoration:none; margin:0 0 14px; }
+  .topic-link:hover { text-decoration:underline; }
+  .history { display:flex; flex-wrap:wrap; gap:8px; }
+  .history a { font-size:14px; padding:6px 12px; border-radius:999px; background:var(--soft); text-decoration:none; color:var(--sub); }
+  .history a.on { background:var(--night); color:#fff; }
+</style>
+
+</head>
+<body>
+
+
+<header class="sky rise">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="inner">
+    
+    <p class="date">11월 16일<small>월요일</small></p>
+    <p class="greet">윤도혜님, 좋은 아침이에요. 07:14에 정리한 소식이에요.</p>
+    
+    
+    
+    <div class="wx">
+      <div class="wx-head">
+        <div class="temp">7°</div>
+        <div><div class="desc">서울 · 구름 조금</div>
+          <div class="rain">비 올 확률 0%</div></div>
+      </div>
+      
+      
+      <div class="wx-chart">
+        <div class="wx-row now">
+          <span class="wx-h">7시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:14.0%"></div></div>
+          <span class="wx-t">7°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">10시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:43.2%"></div></div>
+          <span class="wx-t">10°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">13시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:92.0%"></div></div>
+          <span class="wx-t">15°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">16시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:92.0%"></div></div>
+          <span class="wx-t">15°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">19시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:62.8%"></div></div>
+          <span class="wx-t">12°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">22시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:43.2%"></div></div>
+          <span class="wx-t">10°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">1시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:43.2%"></div></div>
+          <span class="wx-t">10°</span>
+        </div>
+      
+        <div class="wx-row">
+          <span class="wx-h">4시</span>
+          <div class="wx-bar-track"><div class="wx-bar" style="width:33.5%"></div></div>
+          <span class="wx-t">9°</span>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+</header>
+
+<main class="paper">
+  
+
+  
+
+  
+  <section class="section">
+    <h2>경제</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMiWkFVX3lxTFBxaktaQjlHY3EweXBEN3BBOUxDYkVVaHBlcnIwb0JmUE1CUHBsdE92OUtLVUZvYWFOLTZXb1JlSjczbWVoaWpXS2lOejFxSmk2XzRuTFU1TXpvQdIBWEFVX3lxTE84OVNnWS15N0pIUE5pcVdyNnRlaW5pcW1RbFNrNElSb1Axc2pUdVJiczVyWFRwRGlYNjhqM3JVUWRZUXp1NWs2VHI4b2xfRldoeGhLbnJTTU8?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="https://image.ajunews.com/content/image/2026/11/16/20261116062649474182.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTFBxaktaQjlHY3EweXBEN3BBOUxDYkVVaHBlcnIwb0JmUE1CUHBsdE92OUtLVUZvYWFOLTZXb1JlSjczbWVoaWpXS2lOejFxSmk2XzRuTFU1TXpvQdIBWEFVX3lxTE84OVNnWS15N0pIUE5pcVdyNnRlaW5pcW1RbFNrNElSb1Axc2pUdVJiczVyWFRwRGlYNjhqM3JVUWRZUXp1NWs2VHI4b2xfRldoeGhLbnJTTU8?oc=5" target="_blank" rel="noopener">KIA 투수 장민기 타이거즈 선수여서 행복…평생 잊지 않겠다</a><div class="src">아주경제</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="http://www.newsfc.co.kr/news/thumbnail/202611/82314_79750_1613_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9UVUd6U0FnV0E0UXhrUEJFU0tyUE54ZUpZMTBGOTE0bTBUb0I4Qm5nMmpDWDJnbmFLMld3TGd4OHZ3OHUxc3RzZ3NPaGVnTXJpOXZLZmtEaFZGZFotR2NZRlZwOHBGdTNrTVE?oc=5" target="_blank" rel="noopener">[韓경제 아킬레스건](54) &#39;의대 쏠림&#39; 비극 : 국가 천재들이 몰리는 혁신 부재의 사회</a><div class="src">금융소비자뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://wimg.sedaily.com/news/cms/2026/11/13/news-p.v1.20261113.d79155d40010418a9bf6529ec2f74943_Z1.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE9BZlRMaFZEZFNUUFpmUTRjOThlQXpCbFNwRDhvODZCQ2RpdVYwMWRKa0xmNm5BUUdvWGFmX2JVSkFBd1BkaUhoS0g5VmlIMmI2S2c?oc=5" target="_blank" rel="noopener">[기고]공공산후조리원 확대, ‘어디에, 어떻게’가 중요하다</a><div class="src">서울경제</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://image.ajunews.com/content/image/2026/11/16/20261116065357694771.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5LMVZLd096M2l5eTdhRTQycHFlZGhYY21tb3NBbmluS2ZjV1EtbFQ0VDgxU0l1bDFSV1duekhmSzg5M01UR0Vnb09IRG9wNTlGRURkQUlTeUFoQdIBWEFVX3lxTE1FWUxwY3NmeGpwNTBDUWtZT2lLMGZXLWlSRVdYWnhHY1lSLTE1aDBfSjhiV0VxUDhuaFp2NERPSmZpcC13YWtIV2FHMVhGNjRaUXM3OHBnam0?oc=5" target="_blank" rel="noopener">美재무 엔비디아 대대적 쇄신 필요…외부 CEO 영입해야</a><div class="src">아주경제</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://i3n.news1.kr/system/photos/2025/10/27/7565612/high.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1rSjRxZ3BXd2RUSmJqWkZZbWFvV1FTT0syQnZSYWMtZFdSWHJ1STFwN0d6TW4tWlNiNGlNVjFjaTNNaGJHZDR3TWlVakZhZ3htSjNxUlBCZWltQnM?oc=5" target="_blank" rel="noopener">李대통령 &#34;韓-아세안 디지털 경제 통합 뒷받침…초국가범죄 공조 강화&#34;</a><div class="src">뉴스1</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>사회</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE4tbHlmSVhZajhKMXBKTklpWDJxQjdYSExxeTB6QXZxak9pRW1YNnZZQUdGUkc4LXVyOVVtNjY3MWFWVWhJczdpa05wT0Z6TUZlY2VFYzdQbFp0aVdKQ2tTcWNWUi1pbW1Y?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="https://cdn.nhanews.com/news/thumbnail/202611/93936_35537_740_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE4tbHlmSVhZajhKMXBKTklpWDJxQjdYSExxeTB6QXZxak9pRW1YNnZZQUdGUkc4LXVyOVVtNjY3MWFWVWhJczdpa05wT0Z6TUZlY2VFYzdQbFp0aVdKQ2tTcWNWUi1pbW1Y?oc=5" target="_blank" rel="noopener">정부도 ‘흥미롭다’던 ‘한반도KTX’ 정부 계획 포함될까</a><div class="src">남해안신문</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.channeljeju.com/news/photo/202611/203343_204560_5424.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE9wSzhhSU56SWxMQnh0N1doWTN3WmRUUzdraS1mMEhyUXB0c1hZWFhqLWx2QnZCSWw2MldERnF5cGdad2lyZkxyekM1QzJjektDM1pDb1pibFZva1l4OExpeDdVWGQ0WXhWQ3lLRUpEdw?oc=5" target="_blank" rel="noopener">제주영락종합사회복지관, 케어뱅크 하반기 돌봄봉사자 역량강화교육 실시</a><div class="src">채널제주</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.channeljeju.com/news/photo/202611/203341_204558_5124.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE0wTUFUVE8zc250YUpGLV9tMGNJUFFxMzhPUTNJNnd6OXIzOEEwVFA0VHg1ejBjdE03bXhITWYtZm5GLUpaYUhZMHREM0h5bDdIZmVacFBmRHhvZnpxT1k5RHRoZkpQMzZ3ZjkzTzJLYw?oc=5" target="_blank" rel="noopener">제주시, 제2회 읍면동지역사회보장협의체 워크숍 개최</a><div class="src">채널제주</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.economytalk.kr/news/photo/202611/425308_234162_5639.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1sQm53MjdNQ1oxSW5vaVM2eEpNRFg2dnVEU1lpUDItRHNaOHJObnVRNjBWTnlwelVvU294U3o2Szk0ak5KeE5TWTJ0R1NORnRRNWJHbXMzUHN1WDhmZ0dvb1lXdERnaFZ3NUFKcw?oc=5" target="_blank" rel="noopener">[르포] 칼부림 대림동?… 한밤의 차이나타운, 영화와는 달랐다</a><div class="src">이코노미톡뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.newsian.co.kr/news/photo/202611/101297_101605_2518.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9WM1E2cF90LXJlUmpHYzk3TF9sUEdScjFPZEYxdWhIQTE5emR0VlJMRE5nNFlrRXpFalA1TE5PTmxwUjJTSnFSQ1Q5OExzSjM0MUh1a1NLeU9DUDFQZnBES000TnNrRE1aOWdCMA?oc=5" target="_blank" rel="noopener">수능 사흘 앞두고 터진 &#39;AI 커닝&#39;…시험장 감독체계 비상</a><div class="src">뉴시안</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>해외 이슈</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPVkFIUWVzZ21EMlVEUWhsTkNUOU1yT29MYTBuVGpTdHVpQ2pPSG9ZUHBQaVpuNnVEeUdiRmUtU3B5d18tSHpGTDRoVnFzWHhqb09OckZPX3Q4Njk5REJ1U0NVeUc1SjY3cVdwM2YwdFBpZjhtbnJtVGlTTHZGTGxUWC1wWQ?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="https://img.investchosun.com/site/data/img_dir/2026/11/15/2026111580035_0.png" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPVkFIUWVzZ21EMlVEUWhsTkNUOU1yT29MYTBuVGpTdHVpQ2pPSG9ZUHBQaVpuNnVEeUdiRmUtU3B5d18tSHpGTDRoVnFzWHhqb09OckZPX3Q4Njk5REJ1U0NVeUc1SjY3cVdwM2YwdFBpZjhtbnJtVGlTTHZGTGxUWC1wWQ?oc=5" target="_blank" rel="noopener">카모 상장 갈등, 국제중재도 수년 걸릴 판…카카오·TPG &#39;승자 없는 싸움&#39; 되나</a><div class="src">인베스트조선</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.taxwatch.co.kr/news/index/2026/11/12/f2befc12d1ce0ebbb1e2389879b47eec.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9JcHZMR1BEaW41c0hpU2xGZjZiUTRuYmRSVjVPWF9hMm9Gc3lscmdtTGx6QWdWalpSOEhLczJjMFdneGtvWWQ4dEtBc0c1Y1RhTWp3RjNJMDloMkM1elUxc2dTTEc?oc=5" target="_blank" rel="noopener">해외에 오래 살아도 한국 거주자?…183일의 역설</a><div class="src">택스워치</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.aflnews.co.kr/news/thumbnail/202611/331774_194241_3419_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9zU2JMXzRPZzN0TGFkUDUtckFKWVAyOUZ5OTRhZ2xTOXpuZTRSaGVZNy1jMEVMZ3k4bHBYX2JxSTF2R3cyRFI5bU5SejFBQVlHQy14bVNzUWd5Vi1QLVV6UjZzbkd4TmN2MkRlTg?oc=5" target="_blank" rel="noopener">한국단미사료협회 사료연구소, KOLAS 국제공인시험기관 인정 공식 획득</a><div class="src">농수축산신문</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="http://www.nanews.co.kr/news/thumbnail/202611/52804_42957_4859_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5Ldmdjelo0TUEyb0s0RUV5dE5SQkNBaExjSVJ5Sk90aEF1NURObElPRTJRdWRaMzVPcHJfRHk2dWN6ZVdxWEtxS2gzUFNXZU1vSWFCOU9JZmRzaW1BOWhCZkJJc041bHJP?oc=5" target="_blank" rel="noopener">“경남 농수산식품 맛보러 해외바이어 한자리에 모였다”</a><div class="src">시사브리핑</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://img.newspim.com/news/2026/10/26/2610260923272640_t1.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTFA4eEVkOHlraWpYUGppaGxYYUFLVmZnWmQ2VkVIaDVNeC04RzJEeDhoT0RGT3FDQ3Y1UmNkcXUxcGV5Ymw5OHYzcE0zb3pDWDlXb1psS1lJWFVsaDd1?oc=5" target="_blank" rel="noopener">[뉴스 분석] 미중러 정상회담의 국제정치적 의미와 한국에 미칠 영향</a><div class="src">뉴스핌</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>IT·과학</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMia0FVX3lxTE0xSG5BUlRjUnI2ZUFVMWpCeGl4a0IzajE1Mnh5ZVFRY09BWUgyRXU4VGFrMVUzQXF4S0prQjJ3SVprZ2FGTWh4RU5zekU5bk4tNnNOWnJJeWxBYlBkMHRkQXlCSDBqZ1BMQXNV?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="https://cdn.lcnews.co.kr/news/photo/202611/211406_214896_851.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE0xSG5BUlRjUnI2ZUFVMWpCeGl4a0IzajE1Mnh5ZVFRY09BWUgyRXU4VGFrMVUzQXF4S0prQjJ3SVprZ2FGTWh4RU5zekU5bk4tNnNOWnJJeWxBYlBkMHRkQXlCSDBqZ1BMQXNV?oc=5" target="_blank" rel="noopener">[채널·커머스 Pick] 유통가, 연말 주류 수요 대응·AI 기반 서비스 확대</a><div class="src">라이센스뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="http://www.mediadale.com/news/thumbnail/202611/mn_296472_20261116070300_1_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBtM3hlbGlLbVhmNjJwZlB0N0s0SGxCMHVyS0QzSkRaaU1obWxmVTNWQnVULU5VMkZyOW1veHBmdG9RRUxZNnRPb0tPRkMyYmdsVWVVMVJTYUxGU2wxYzJuRG50cnJPbThLbGFR?oc=5" target="_blank" rel="noopener">최태원 회장 “‘AI 플라이휠’ 통해 성장이 성장 만드는 선순환 구조 만들어야”… 2026년 SK CEO세미나 폐막</a><div class="src">미디어데일</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://img.investchosun.com/site/data/img_dir/2026/11/15/2026111580033_0.png" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPX1BtM1U1V19pUGxnSVowVUVPZHVUU1NPSENyNFR0a19mTmNDR2NtRVNUOHJtYW5aTE5UdW4yRG1DSDJjN3JxOGxwbTRhazlhalZfdGRvc2xXVkFNbU5qZHY0X3RYMy10NklmeVN2b2pSLUZIRHhLZzE0RzZGLXdYNUFUOA?oc=5" target="_blank" rel="noopener">&#39;블루쓰나미&#39;에 AI 투자도 금리도 흔들…국내 채권시장 셈법 복잡</a><div class="src">인베스트조선</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://img.investchosun.com/site/data/img_dir/2026/11/15/2026111580032_0.png" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNaGh0U29lSXlOeGdvZWhnTzM0UjFhRGY5c1pXUUdtU3RPMjZRUnBSbWhua3YwcHJBSGw2cGdySko1R0FMbnF5NHpaLVhsaWpkRWhicW1zUHRYNnJtb0JsVVRpV1hsZjZsUW5zRnlLbFMyemFoYmlKSGJlNFVUXzBoOHpwVQ?oc=5" target="_blank" rel="noopener">깐부회동 1년만에 젠슨 황 퇴장…GPU 26만장 약속은 어떻게 됐을까</a><div class="src">인베스트조선</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.newscj.com/news/thumbnail/202611/3448908_3575410_5053_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE15bmdxc1RFVTgwMmJEa3lULXc0LVMxenhGX29pWl9jUmp5WUE2bXB2dWl2M1R5S2c2YnYxR0c3bmp0cXg2WE1NVXd0X0VndjAyNjdBSnRxNlhMaGNmdzUxSzMwYVBJUWRhNXc?oc=5" target="_blank" rel="noopener">[천지일보 이슈종합] 세무사 수석 합격자 AI 부정행위 시인·라우터 과부하에 멈춘 美 하늘길·수능 응시자 50만명 시대 가능성·조작기소 특검 앞두고 검사 인력난·예산안조정소위 가동·수도권 전세난 여전</a><div class="src">천지일보</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>건강·의료</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBHSy1rOVRiZGRqZzBXZTBpSDNHZGhKTjhXaGJpSndTaXl2aEJIWWVmWE5OZDJrTDdHcENUSzBzX1dlWmt2LXJURW03NmRaVjZDc1NoME1MdjBHMFlvUjhZTHNpbE5FY3NPQXEw?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="http://www.mediwelfare.com/image/logo/snslogo_20180108053524.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBHSy1rOVRiZGRqZzBXZTBpSDNHZGhKTjhXaGJpSndTaXl2aEJIWWVmWE5OZDJrTDdHcENUSzBzX1dlWmt2LXJURW03NmRaVjZDc1NoME1MdjBHMFlvUjhZTHNpbE5FY3NPQXEw?oc=5" target="_blank" rel="noopener">요양병원 &#39;욕창 개선&#39;은 필수…비엘EGF스프레이 &#39;한몫&#39;</a><div class="src">의료&amp;복지뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://www.kifuture.com/data/photos/20261147/art_17947793389705_34babf.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFAzWFN2TFFIdFhUTEE0R29HenpxNGdCRFVaa1hPV3MtcnVoWjNLY1o2MU8xQTI1RklPSzJfT0Q2eXJSZHpfMUZnbHpwZG9LSlpISm0xTlZwVGpVYXd4UXRxQnFB?oc=5" target="_blank" rel="noopener">화성시, 의료급여수급권자 무료 건강검진…12월 31일까지</a><div class="src">경인미래신문</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="http://www.sisaanseong.com/news/thumbnail/202611/30488_35435_4311_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE5SSlhzVVBhX2tjMDBUR1VibnFTb1NBSC1uUnJTM0g0cEhsZE0wQnh4M09tQ3FWYTNHbmxCZXFIQ3BaeG9CeDVxTXY0ZWdjS3NUTkdPOVEwMEYyLVFwSnZ4bnBfTkZ5LXR3VVlIRQ?oc=5" target="_blank" rel="noopener">안성시, 포도 수확 후 관리 및 농업인 건강관리 교육 추진</a><div class="src">시사안성</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.hitnews.co.kr/news/thumbnail/202611/80759_110103_854_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE52M1AzTFBFMVlKbGZtU0JMS0o0WnoteDZHVWNxd3A3dXRFYkRYeFpPYTZ5cjFhelllZ2hvb2ktYnJkME1IU0VVb0VKSi1vRWhWUy1EQkdsRlhzZ1piSk1UNURwR3JiSlV3S3ow?oc=5" target="_blank" rel="noopener">&#34;비단을 만들던 누에고치, 이제 의료·미용 소재가 된다&#34;</a><div class="src">히트뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="http://www.newsthevoice.com/news/thumbnail/202611/48065_67271_5112_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1nSmJCMHR4TTRramtVdzQxT181Q2RPM0hZXzBwQVU4T3RDdGVmajA2Ql9DYngyQWk1N21ZSDN3NkRmQUd5NHBiZmVhVFdlSkw4S2hxTmRhaUFiSFJIX0JjNXNuY3MwVWlhYkZ6ZTJvUQ?oc=5" target="_blank" rel="noopener">[수첩] 대학병원 경영자가 누구인가</a><div class="src">뉴스더보이스헬스케어</div></div>
+      </li>
+    </ul>
+  </section>
+  
+
+  
+
+  
+  <section class="section">
+    <h2>증시와 환율</h2>
+    
+    <table class="mkt">
+      
+      <tr><td>코스피</td><td class="p">5,290.53</td>
+        <td class="c"><span class="chg down">
+          ▼0.98%</span></td></tr>
+      
+      <tr><td>코스닥</td><td class="p">699.66</td>
+        <td class="c"><span class="chg up">
+          ▲0.45%</span></td></tr>
+      
+      <tr><td>S&amp;P500</td><td class="p">7,561.67</td>
+        <td class="c"><span class="chg down">
+          ▼0.40%</span></td></tr>
+      
+      <tr><td>나스닥</td><td class="p">25,136.27</td>
+        <td class="c"><span class="chg down">
+          ▼0.91%</span></td></tr>
+      
+      <tr><td>다우</td><td class="p">52,347.55</td>
+        <td class="c"><span class="chg up">
+          ▲0.10%</span></td></tr>
+      
+      <tr><td>원/달러</td><td class="p">1,335.28</td>
+        <td class="c"><span class="chg up">
+          ▲0.11%</span></td></tr>
+      
+    </table>
+    <p class="small" style="margin:10px 0 0">직전 거래일 종가와 비교한 값이에요. 투자 판단의 근거로 쓰지 마세요.</p>
+  </section>
+  
+</main>
+<footer class="foot">뉴스 Google 뉴스, 시세 Yahoo Finance, 날씨 Open-Meteo</footer>
+
+</body>
+</html>

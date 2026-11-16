@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1d2552">
+<title>11월 17일 (화) 아침 브리핑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night:#1d2552; --night-2:#2d3a78; --dawn:#ffb37a; --sun:#ffd23f;
+    --sky:#eef2fa; --paper:#fff; --ink:#1b2033; --sub:#5e6680; --faint:#8b92a8;
+    --line:#e3e7f1; --soft:#f5f7fc; --up:#e0413a; --down:#2c63d9; --kakao:#fee500;
+    --serif:"Nanum Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --sans:"Nanum Gothic", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--sky); color:var(--ink); font-family:var(--sans);
+         font-size:17px; line-height:1.6; letter-spacing:-0.01em; word-break:keep-all; }
+  a { color:var(--night-2); text-underline-offset:3px; }
+  :focus-visible { outline:3px solid var(--sun); outline-offset:2px; border-radius:6px; }
+
+  /* 새벽 하늘 띠 */
+  .sky { position:relative; overflow:hidden; color:#fff;
+         background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 58%, #8f6f9a 82%, var(--dawn) 100%);
+         padding:calc(18px + env(safe-area-inset-top)) 22px 64px; }
+  .sky.short { padding-bottom:52px; background:linear-gradient(180deg, var(--night) 0%, var(--night-2) 75%, #6c6496 100%); }
+  .sky .inner { position:relative; z-index:1; max-width:620px; margin:0 auto; }
+  .sun { position:absolute; z-index:0; width:150px; height:150px; border-radius:50%; right:-20px; bottom:-48px;
+         background:radial-gradient(circle, #fff6c8 0%, var(--sun) 42%, rgba(255,210,63,0) 70%); }
+  .sky.short .sun { opacity:.45; width:110px; height:110px; bottom:-60px; }
+  @media (prefers-reduced-motion:no-preference) {
+    .sky.rise .sun { animation:rise 1.6s cubic-bezier(.2,.7,.2,1) both; }
+    @keyframes rise { from { transform:translateY(70px); opacity:0; } to { transform:none; opacity:1; } }
+  }
+  .nav { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:26px; font-size:15px; }
+  .nav a, .nav button { color:#dfe4ff; text-decoration:none; background:none; border:0; font:inherit; padding:6px 0; cursor:pointer; }
+  .nav .brand { font-family:var(--serif); font-weight:700; color:#fff; font-size:17px; }
+  .nav .links { display:flex; gap:16px; align-items:center; }
+  .kicker { color:#c9d0f5; font-size:15px; margin:0 0 4px; }
+  .sky h1 { font-family:var(--serif); font-weight:700; font-size:30px; line-height:1.3; margin:0; letter-spacing:-0.02em; }
+  .sky p.lead { color:#dfe4ff; margin:10px 0 0; font-size:16px; }
+
+  /* 신문 한 장 */
+  .paper { position:relative; max-width:620px; margin:-34px auto 0; background:var(--paper);
+           border-radius:22px 22px 0 0; padding:26px 22px 40px; min-height:62vh;
+           box-shadow:0 -1px 0 rgba(29,37,82,.04); }
+  @media (min-width:660px) { .paper { border-radius:22px; margin-bottom:40px; padding:32px 34px 40px; } }
+  .section { padding:26px 0; border-top:1px solid var(--line); }
+  .section:first-child { padding-top:0; border-top:0; }
+  .section h2 { font-family:var(--serif); font-size:21px; font-weight:700; margin:0 0 12px; letter-spacing:-0.02em; }
+  .hint { color:var(--sub); font-size:15px; }
+  .small { font-size:14px; color:var(--faint); }
+
+  .flash { max-width:620px; margin:0 auto 18px; background:rgba(255,255,255,.14); color:#fff;
+           border-radius:12px; padding:11px 14px; font-size:15px; }
+  .paper .flash { background:var(--soft); color:var(--ink); }
+
+  /* 버튼 */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; border:0; border-radius:12px;
+         padding:13px 18px; font:600 16px/1.2 var(--sans); white-space:nowrap; background:var(--night); color:#fff; text-decoration:none; cursor:pointer; }
+  .btn:active { transform:translateY(1px); }
+  .btn.block { width:100%; }
+  .btn.quiet { background:var(--soft); color:var(--night); }
+  .btn.small { padding:9px 13px; font-size:14px; border-radius:10px; }
+  .btn.kakao { background:var(--kakao); color:#191600; width:100%; font-size:17px; padding:16px; }
+  .btn.kakao::before { content:""; width:20px; height:18px; background:#191600;
+    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'><path d='M12 0C5.4 0 0 4.2 0 9.4c0 3.4 2.2 6.3 5.6 8L4.4 21.8c-.1.4.3.7.6.5l5.1-3.4c.6.1 1.3.1 1.9.1 6.6 0 12-4.2 12-9.4S18.6 0 12 0z'/></svg>") center/contain no-repeat;
+            mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 22'><path d='M12 0C5.4 0 0 4.2 0 9.4c0 3.4 2.2 6.3 5.6 8L4.4 21.8c-.1.4.3.7.6.5l5.1-3.4c.6.1 1.3.1 1.9.1 6.6 0 12-4.2 12-9.4S18.6 0 12 0z'/></svg>") center/contain no-repeat; }
+  .linkbtn { background:none; border:0; padding:0; font:inherit; font-size:14px; color:var(--faint); cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+
+  /* 입력 */
+  .field { margin-bottom:20px; }
+  .field > label, .row.field > div > label, .label { display:block; font-weight:700; margin-bottom:8px; font-size:16px; }
+  .field .hint { margin-top:6px; font-size:14px; }
+  input[type=text], input[type=time], select { width:100%; font:16px var(--sans); padding:13px 14px; color:var(--ink);
+    border:1.5px solid var(--line); border-radius:12px; background:var(--soft); appearance:none; }
+  select { background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' stroke='%235e6680' stroke-width='2' fill='none'/></svg>");
+           background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+  input:focus, select:focus { border-color:var(--night-2); background:#fff; outline:none; }
+  .row { display:flex; gap:12px; flex-wrap:wrap; } .row > * { flex:1; min-width:140px; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chips label { position:relative; border:1.5px solid var(--line); border-radius:999px; padding:8px 15px; font-size:15px;
+                 cursor:pointer; user-select:none; background:#fff; }
+  .chips input { position:absolute; opacity:0; pointer-events:none; }
+  .chips label:has(input:checked) { background:var(--night); border-color:var(--night); color:#fff; }
+  .chips label:has(input:focus-visible) { outline:3px solid var(--sun); outline-offset:2px; }
+  .toggle { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px;
+            background:var(--soft); border-radius:12px; font-weight:600; cursor:pointer; }
+  .toggle input { width:22px; height:22px; accent-color:var(--night); }
+
+  .up { color:var(--up); } .down { color:var(--down); }
+  footer.foot { max-width:620px; margin:0 auto; padding:20px 22px 36px; text-align:center; color:var(--faint); font-size:13px; }
+</style>
+
+<style>
+  .date { font-family:var(--serif); font-size:40px; line-height:1.15; font-weight:700; margin:0; letter-spacing:-0.03em; }
+  .date small { font-size:22px; font-weight:400; color:#c9d0f5; margin-left:4px; }
+  .greet { margin:10px 0 0; color:#dfe4ff; font-size:17px; }
+  .wx { margin-top:22px; padding-top:16px; border-top:1px solid rgba(255,255,255,.18); }
+  .wx-head { display:flex; align-items:baseline; gap:14px; margin-bottom:14px; }
+  .wx-head .temp { font-family:var(--serif); font-size:28px; font-weight:700; }
+  .wx .desc { font-size:16px; color:#fff; } .wx .rain { font-size:14px; color:#ffe7c2; }
+  .wx-chart { display:flex; flex-direction:column; gap:7px; }
+  .wx-row { display:flex; align-items:center; gap:10px; font-size:13px; color:#dfe4ff; }
+  .wx-row .wx-h { flex:0 0 32px; }
+  .wx-bar-track { flex:1; height:9px; border-radius:5px; background:rgba(255,255,255,.16); overflow:hidden; }
+  .wx-bar { height:100%; border-radius:5px; background:linear-gradient(90deg, var(--night-2), var(--sun)); }
+  .wx-row.now .wx-h, .wx-row.now .wx-t { color:#fff; font-weight:700; }
+  .wx-row .wx-t { flex:0 0 36px; text-align:right; font-variant-numeric:tabular-nums; }
+
+  .preview { background:#fffbe0; border-radius:14px; padding:14px 16px; font-size:15px; white-space:pre-wrap; line-height:1.55; margin:0; }
+  .must { list-style:none; counter-reset:m; padding:0; margin:0; }
+  .must li { counter-increment:m; display:flex; gap:14px; padding:10px 0; font-size:18px; line-height:1.5; font-weight:600; }
+  .must li::before { content:counter(m); flex:0 0 30px; height:30px; border-radius:50%; background:var(--sun); color:var(--night);
+                     font:700 16px/30px var(--serif); text-align:center; margin-top:-1px; }
+
+  .mkt { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  .mkt td { padding:10px 0; border-bottom:1px solid var(--line); font-size:16px; }
+  .mkt tr:last-child td { border-bottom:0; }
+  .mkt .p { text-align:right; font-weight:600; }
+  .mkt .c { text-align:right; width:92px; }
+  .chg { display:inline-block; min-width:76px; text-align:right; font-weight:700; font-size:15px; }
+  .comment { background:var(--soft); border-radius:12px; padding:12px 14px; font-size:16px; margin:0 0 8px; }
+
+  .news { list-style:none; padding:0; margin:0; }
+  .news li { display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-bottom:1px solid var(--line); }
+  .news li:last-child { border-bottom:0; padding-bottom:0; }
+  .news .thumb { flex:0 0 60px; width:60px; height:60px; border-radius:10px; object-fit:cover; background:var(--soft); }
+  .news .body { flex:1; min-width:0; }
+  .news a { color:var(--ink); text-decoration:none; font-size:16px; line-height:1.5; display:block; }
+  .news a:hover { color:var(--night-2); text-decoration:underline; }
+  .news .src { color:var(--faint); font-size:13px; margin-top:3px; }
+  .topic-sum { font-family:var(--serif); font-size:17px; line-height:1.7; color:var(--sub); margin:0 0 4px; }
+  .topic-link { display:inline-block; font-size:14px; color:var(--night-2); text-decoration:none; margin:0 0 14px; }
+  .topic-link:hover { text-decoration:underline; }
+  .history { display:flex; flex-wrap:wrap; gap:8px; }
+  .history a { font-size:14px; padding:6px 12px; border-radius:999px; background:var(--soft); text-decoration:none; color:var(--sub); }
+  .history a.on { background:var(--night); color:#fff; }
+</style>
+
+</head>
+<body>
+
+
+<header class="sky rise">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="inner">
+    
+    <p class="date">11월 17일<small>화요일</small></p>
+    <p class="greet">윤도혜님, 좋은 아침이에요. 07:02에 정리한 소식이에요.</p>
+    
+  </div>
+</header>
+
+<main class="paper">
+  
+
+  
+
+  
+  <section class="section">
+    <h2>사회</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMib0FVX3lxTFBlOFg0N2ItbmFEU3BYOEV2c1NpYUhLUkZCMXZiX1ZwV0x3amh0aWlmS1doODRXMXM0eVhIZjJZRXAzekF4WkFLaGxhdjkzOHlMV25heXJ6WnIySGZxMnJxQTVUX3lGbTgxVjdSU2Rxdw?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="https://cdn.channeljeju.com/news/photo/202611/203364_204594_5040.png" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTFBlOFg0N2ItbmFEU3BYOEV2c1NpYUhLUkZCMXZiX1ZwV0x3amh0aWlmS1doODRXMXM0eVhIZjJZRXAzekF4WkFLaGxhdjkzOHlMV25heXJ6WnIySGZxMnJxQTVUX3lGbTgxVjdSU2Rxdw?oc=5" target="_blank" rel="noopener">서귀포시사랑원, 「삼춘들의 작품전시회」 성황리에 마무리</a><div class="src">채널제주</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://cdn.labortoday.co.kr/news/thumbnail/202611/237764_116041_2020_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE54c01ieVhvTjNNNUdGX2t3QzBXaU1hM1E1OE85YUNqTWdzcVhGWGxITjJsRDlsX0sxRFo1YmhtYUt4bTB6ZGFQRXBvTC03bVBScmttcVlKaFRiVkk5ZjR3QjMxeWdTb1JlQ2hDSFVJd3U?oc=5" target="_blank" rel="noopener">[민주노총 선거 공약 보니] 최대 쟁점 ‘사회적 대화’ 후보조 각양각색</a><div class="src">매일노동뉴스</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://imageorigin.christiantoday.co.kr/data/images/full/392559/image.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTE9jVXNyU25DWVJyeHluUGhMczJsbWVWNXZKbi04WVJsMUdRaFFLU0QwMWlfMEZQTEtSSGR2emk0c3hPZUtka0ROejg1SUEwUTU4Y2luajMzNA?oc=5" target="_blank" rel="noopener">“최근 중국 경제 어려움, 탈북민 강제북송과 무관하지 않아” : 사회</a><div class="src">크리스천투데이</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTFBmbGRoY3NBVFFjWlZYMC1aMDhOQkdPcjYyT01CbnppNlp3TERUcjN1ZXNwRUUwa3VnT0NEZ25RdGN3bF9UTjZHM0FpSy14dkRvdGMwR25sZEtFRVlqTlNGdkd4bkF3X2VOVC01cQ?oc=5" target="_blank" rel="noopener">서산 종합사회복지관 앞 평면교차로 개통, 15억여 원 투입해 교통환경 개선</a><div class="src">중도일보</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE93RnloOHc4SXBqSFU0WVhMZmpmTWFaX2daSjVlbHhtN1RUOG5xZ055YXBpS0xnOWxRVThoamxmaDBrZndDT0s5cm84X2w5SzR3c0JlQjF4ZFRoUWRFa0ZhVkswanlsWFBRRVcxRA?oc=5" target="_blank" rel="noopener">대전시 예비사회인 대상 ‘맞춤형 부동산 교육’</a><div class="src">메가충청뉴스</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>해외 이슈</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE53a2x6bklleXhYMjlSbG14MnNfa25RLTU4dFJXTWdrMDJ6NzFzd2dVaDE1SDFyZFFZaUhLUzV3ek9kek9VRjNzWmZBVjJXUjBRcUdRVTlIdmsxd0N6R0RtRndTSE0?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        <img class="thumb" src="http://www.press9.kr/news/thumbnail/202611/86394_98480_138_v150.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE53a2x6bklleXhYMjlSbG14MnNfa25RLTU4dFJXTWdrMDJ6NzFzd2dVaDE1SDFyZFFZaUhLUzV3ek9kek9VRjNzWmZBVjJXUjBRcUdRVTlIdmsxd0N6R0RtRndTSE0?oc=5" target="_blank" rel="noopener">현대카드, 해외차입 9개월 새 1조원 가까이…자금줄 확대</a><div class="src">PRESS9</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFBsU2NBbm1sRkhoUVJMVmlpbXpUUWNqeUQySzFVQS1SZVJTNUZEVlZwU0xDN0ZYNm5NMUEtRF9hSlZUZzlaWVVXQmdRRUV4RGJFRG5xdkJvWkdyV2h0ZXVpUDZ3blg5Zmlqc1V2RU5R?oc=5" target="_blank" rel="noopener">국제유가, 원유공급 차질 우려 완화 등 영향 급락세-WTI 배럴당 85달러대⋯국제금값, 달러강세 등에 하락-장중 1년여만 최저치</a><div class="src">이코노뉴스</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE50QjJGUmtDSnRwZjBoSHNfZXRtd28xWTlwdWFMTDNKR3R4SGF0MlB3QWhGcV9ubUR3ZVJYMEVxT1cwbWgwdUJkbDNhbkFSalQ1YmI0bkhIbnlpNmN5eXhPYUFMODNnUUlXYWlCSXN30gFzQVVfeXFMTmtBMDMtOTNCYjlkclN1U1FGMFFENWNfMC02Uk5PU294MkJmYmJ2QkRMclVoOG9TbVNpSU1NRGRFNUhEMjJES3kta1JUdmtSTC1ONmxNYVlQMVhLbGx6X3VmZ1RxbnVTeGFUZ2RyV2pOd2xQdw?oc=5" target="_blank" rel="noopener">크렘린궁 &#34;미중러 3자 정상회담 공동성명 추진… 국제정세 중대한 영향&#34;</a><div class="src">한국일보</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFAyTGVTR2xUMWVFWUR3X1hReF81MFJyTEFMU05oeE5CNGExVG1OR0huQ2pwcF8xZTlneHhBZUpoNFIyMmZlVjl6aVBna3dfTFVYdWhBdXpPVjR0aHR0dVdtTFhBNHF6UEE4SUZlMzd30gFzQVVfeXFMT3Z1ZXlzemtyVTV5dUxsV19rdThxQmxINk5NUGFtTW5mNmRiZDg3LW1MTEJuYTJGUkU5NUpIZGQ0RjNTZWNFRzgzTFk5UUpiUzBmRWFudkJ3Y01DZEFvUUZFTDlwMVRXTGZBV1hWdW9CX3RoNA?oc=5" target="_blank" rel="noopener">트럼프 &#34;젠슨 황 불륜녀 스파이 아닐 수도… 중국 자극 원치 않아&#34;</a><div class="src">한국일보</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5aME9pZmd5d2RJOU51V0w2aGlPOEVGUkFNdEtUbXN6WFhNR2dFUmtlSlVGM1R4TTlWQ0VoOTNJN04xeVdVNkduUlZEVzhsTDJNR2N0bmhzdU5aLXZxNzhlVEtZQTBBWEhPMk5ld3k4UUc5YnpHd0HSAXtBVV95cUxQbk5IclUyRHltSGQtRER6aDJ6ejRGYnZJdlVsQWNkV2ttaVBxUnpwa3lwcUsxRVZjZUlKenJ6RjFrNDR6MThoZzMxWXFqYU8wQ3hIMDlHM2l3YmdGZU13STUxTzc5NU5ydFoyeU10SGc2Vl9iX2hkV25LczQ?oc=5" target="_blank" rel="noopener">석유공급 과잉 전망에 국제유가 급락…WTI 3개월만에 최저 - 머니투데이</a><div class="src">머니투데이</div></div>
+      </li>
+    </ul>
+  </section>
+  
+  <section class="section">
+    <h2>IT·과학</h2>
+    
+    <a class="topic-link" href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZS1WOGlLSEdmcjQtV2loNXlTT2NDSHpncEE3S1hpSFMyVExXMjRnaTlrUGR2X29OTEo5R0hKZkdiWERIZFROVE5RTTNYd1d2WkJqMWJtNm1NRldRSG9Pa1puZW9sQnZiYTAtYnpNSTNoaVlQSk5CWU16T2dEclloSFNwUFRvVFdI?oc=5" target="_blank" rel="noopener">관련 기사 보기 →</a>
+    <ul class="news">
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxPZS1WOGlLSEdmcjQtV2loNXlTT2NDSHpncEE3S1hpSFMyVExXMjRnaTlrUGR2X29OTEo5R0hKZkdiWERIZFROVE5RTTNYd1d2WkJqMWJtNm1NRldRSG9Pa1puZW9sQnZiYTAtYnpNSTNoaVlQSk5CWU16T2dEclloSFNwUFRvVFdI?oc=5" target="_blank" rel="noopener">美, AI 칩 우회 수출 봉쇄에 반도체·클라우드주 &#39;검은 월요일&#39;</a><div class="src">글로벌이코노믹</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE9kUnN4aTQ4Ukt3VXZ5dDRpRFc0Sk1qclVJb2NHV2pVMzN0SC1iU29WWWxZTnM5bWRlMS1hLUlZMEQ4dExPdllwYmg4QkRmQ3JRM0wxQkxSRGxJRnJCc3gwSFluQWUtTTI4NTRqU01wQ3M?oc=5" target="_blank" rel="noopener">미·중 반도체 갈등에 자금 이동…CXMT 팔고 삼성전자 담았다 By EBN</a><div class="src">Investing.com 한국어</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://media.bloomingbit.io/news/48f3af30-6c66-49e3-ba18-0d258915de14.webp" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE5TNE94Rk5uMnprMlFvTHd2U0RJTWd2MkJTMjcxWUFFdmtkNGh0OWRrN3FXcW80SmZwekFRV3Y4SkEyV1l2ZkY1QUpIUlRoaTdt?oc=5" target="_blank" rel="noopener">뉴욕증시, AI주 매도에 일제히 하락…나스닥 2.49%↓</a><div class="src">블루밍비트</div></div>
+      </li>
+    
+      <li>
+        <img class="thumb" src="https://img.newspim.com/news/2026/11/17/2611170652546580_t1.jpg" alt="" loading="lazy">
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE43Sk52Y015LW9KVmpHUnJ6TUhZUXhLU2hMMlp3dHNyekZ4MHFMdlNUUWZBZU54OTYxZFFLbkIycGEyV3JqRFRTTXB2UHlKenhhU184UUlDcnFWcm5o?oc=5" target="_blank" rel="noopener">[미국 특징주] &#34;웨딩드레스 업체도 AI주?&#34;…AI 급락에 투자자들 &#39;숨은 노출도&#39; 찾기 비상</a><div class="src">뉴스핌</div></div>
+      </li>
+    
+      <li>
+        
+        <div class="body"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE8yLWJnOW81NGhXWVZpX210eS1ia3d6WnZnQ0JKOTJ1OEFSRDE0TTJVUGFIc3NvWTJoT1NIOWlNMS05LTFJVE42bkRaZ2ttOVF4ME8zT0lwOUpjTlZOVGIyYg?oc=5" target="_blank" rel="noopener">엔비디아 4%·반도체지수 5% 급락…뉴욕증시, 실적 앞두고 AI주 투매</a><div class="src">www.theconnectmoney.com</div></div>
+      </li>
+    </ul>
+  </section>
+  
+
+  
+
+  
+  <section class="section">
+    <h2>증시와 환율</h2>
+    
+    <table class="mkt">
+      
+      <tr><td>코스피</td><td class="p">5,100.50</td>
+        <td class="c"><span class="chg down">
+          ▼4.53%</span></td></tr>
+      
+      <tr><td>코스닥</td><td class="p">665.65</td>
+        <td class="c"><span class="chg down">
+          ▼4.43%</span></td></tr>
+      
+      <tr><td>S&amp;P500</td><td class="p">7,416.59</td>
+        <td class="c"><span class="chg down">
+          ▼1.92%</span></td></tr>
+      
+      <tr><td>나스닥</td><td class="p">24,509.76</td>
+        <td class="c"><span class="chg down">
+          ▼2.49%</span></td></tr>
+      
+      <tr><td>다우</td><td class="p">51,608.17</td>
+        <td class="c"><span class="chg down">
+          ▼1.41%</span></td></tr>
+      
+      <tr><td>원/달러</td><td class="p">1,335.12</td>
+        <td class="c"><span class="chg up">
+          ▲0.10%</span></td></tr>
+      
+    </table>
+    <p class="small" style="margin:10px 0 0">직전 거래일 종가와 비교한 값이에요. 투자 판단의 근거로 쓰지 마세요.</p>
+  </section>
+  
+</main>
+<footer class="foot">뉴스 Google 뉴스, 시세 Yahoo Finance, 날씨 Open-Meteo</footer>
+
+</body>
+</html>
